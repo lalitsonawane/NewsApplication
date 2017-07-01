@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,13 +45,10 @@ public class MainActivity extends AppCompatActivity {
                 .setTag(this)
                 .setPriority(Priority.HIGH)
                 .build()
-                .getAsObjectList(News.class, new ParsedRequestListener<List<News>>() {
-
-
+                .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
-                    public void onResponse(List<News> response) {
+                    public void onResponse(JSONArray response) {
 
-                       
 
                     }
 
