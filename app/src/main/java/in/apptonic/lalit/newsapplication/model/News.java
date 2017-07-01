@@ -1,12 +1,14 @@
 package in.apptonic.lalit.newsapplication.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by lalitkumarsonawane on 01/07/17.
  */
-
 public class News {
-
+    @SerializedName("title")
     String title;
+    @SerializedName("description")
     String description;
 
     public News(String title, String description) {

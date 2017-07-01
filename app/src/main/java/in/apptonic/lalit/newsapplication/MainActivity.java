@@ -9,10 +9,12 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import in.apptonic.lalit.newsapplication.model.News;
@@ -23,11 +25,15 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     List<News> newsList = new ArrayList<>();
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        GsonBuilder gsonbuilder = new GsonBuilder();
+        gsonbuilder.setDateFormat("M/d/yy hh:mm a");
+        gson = gsonbuilder.create();
 
         AndroidNetworking.initialize(getApplicationContext());
 
@@ -35,21 +41,18 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new AdapterNews(newsList);
-
         downloadNews();
-
     }
 
     private void downloadNews() {
+
         AndroidNetworking.get("https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=81aa06e91e5a4f189d1b7a64f07bc373")
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
 
-                        Gson gson = new Gson();
-                        gson.fromJson("first", News.class);
-
+                        List<News> news = Arrays.asList(gson.fromJson(String.valueOf(response), News[].class));
 
                     }
 
@@ -58,5 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+
+
     }
 }
