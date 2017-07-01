@@ -6,9 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 
@@ -42,12 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void downloadNews() {
         AndroidNetworking.get("https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=81aa06e91e5a4f189d1b7a64f07bc373")
-                .setTag(this)
-                .setPriority(Priority.HIGH)
                 .build()
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
+
+                        Gson gson = new Gson();
+                        gson.fromJson("first", News.class);
 
 
                     }
@@ -57,6 +58,5 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
     }
 }
