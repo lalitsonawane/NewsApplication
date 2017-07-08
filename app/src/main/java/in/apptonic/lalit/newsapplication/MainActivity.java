@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     List<News> newsList = new ArrayList<>();
+    AdapterNews adapterNews;
     private Gson gson;
 
     @Override
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new AdapterNews(newsList);
+        adapter = new AdapterNews();
         recyclerView.setAdapter(adapter);
         downloadNews();
     }
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
 
                         List<News> news = Arrays.asList(gson.fromJson(String.valueOf(response), News[].class));
+
+                        adapterNews.updateNewsList(news);
+
 
                         //TODO How to convert above gson values n String so that i can send them in adapter for recycler view
                     }

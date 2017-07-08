@@ -19,8 +19,14 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.NewsViewHolder
 
     List<News> newsList = new ArrayList<>();
 
-    public AdapterNews(List<News> newsList) {
-        this.newsList = newsList;
+    public void updateNewsList(List<News> list){
+
+        this.newsList = list;
+        notifyDataSetChanged();
+
+    }
+
+    public AdapterNews() {
     }
 
     @Override
