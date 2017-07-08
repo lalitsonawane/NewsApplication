@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new AdapterNews(newsList);
+        recyclerView.setAdapter(adapter);
         downloadNews();
     }
 
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
+
 
                     }
                 });
