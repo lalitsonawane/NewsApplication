@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
                         List<News> news = Arrays.asList(gson.fromJson(String.valueOf(response), News[].class));
 
+                        //TODO How to convert above gson values n String so that i can send them in adapter for recycler view
                     }
 
                     @Override
