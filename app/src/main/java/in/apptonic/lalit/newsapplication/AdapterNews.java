@@ -17,16 +17,17 @@ import in.apptonic.lalit.newsapplication.model.News;
 
 public class AdapterNews extends RecyclerView.Adapter<AdapterNews.NewsViewHolder> {
 
-    List<News> newsList = new ArrayList<>();
+    List<News> newsAdapterList = new ArrayList<>();
 
     public void updateNewsList(List<News> list){
 
-        this.newsList = list;
+        this.newsAdapterList = list;
         notifyDataSetChanged();
 
     }
 
     public AdapterNews() {
+
     }
 
     @Override
@@ -40,13 +41,13 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.NewsViewHolder
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
 
-        holder.newsTitle.setText(newsList.get(position).getTitle());
-        holder.newsDesc.setText(newsList.get(position).getDescription());
+        holder.newsTitle.setText(newsAdapterList.get(position).getTitle());
+        holder.newsDesc.setText(newsAdapterList.get(position).getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return newsList.size();
+        return newsAdapterList.size();
     }
 
     public class NewsViewHolder extends RecyclerView.ViewHolder {
