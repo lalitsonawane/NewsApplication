@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
     List<String> newsList = new ArrayList<String>();
-    AdapterNews adapterNews;
+    AdapterNews adapterNews = new AdapterNews();
     private Gson gson;
 
     @Override
@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                         newsList.add("");
 
                         adapterNews.updateNewsList(news);
+
 
 
 
