@@ -9,26 +9,26 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.apptonic.lalit.newsapplication.model.News;
-
 /**
  * Created by lalitkumarsonawane on 01/07/17.
  */
 
 public class AdapterNews extends RecyclerView.Adapter<AdapterNews.NewsViewHolder> {
 
-    List<News> newsAdapterList = new ArrayList<>();
+    List<Article> articles = new ArrayList<>();
 
-    public void updateNewsList(List<News> list){
+   /**
+   public void updateNewsList(List<News> list){
 
         this.newsAdapterList = list;
         notifyDataSetChanged();
 
     }
-
+   **/
     public AdapterNews() {
 
     }
+
 
     @Override
     public NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,13 +41,13 @@ public class AdapterNews extends RecyclerView.Adapter<AdapterNews.NewsViewHolder
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
 
-        holder.newsTitle.setText(newsAdapterList.get(position).getTitle());
-        holder.newsDesc.setText(newsAdapterList.get(position).getDescription());
+        holder.newsTitle.setText(articles.get(position).getTitle());
+        holder.newsDesc.setText(articles.get(position).getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return newsAdapterList.size();
+        return articles.size();
     }
 
     public class NewsViewHolder extends RecyclerView.ViewHolder {

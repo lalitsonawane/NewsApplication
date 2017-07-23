@@ -6,6 +6,12 @@ import com.google.gson.annotations.SerializedName;
  * Created by lalitkumarsonawane on 01/07/17.
  */
 public class News {
+
+    public News(){
+
+    }
+
+
     @SerializedName("title")
     String title;
     @SerializedName("description")
